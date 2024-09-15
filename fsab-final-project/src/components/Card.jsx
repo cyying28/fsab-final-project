@@ -2,11 +2,13 @@ import React from 'react';
 import './Card.css'; // Import the CSS file for styling the card
 
 export const Card = ({
+    id,
     className,
     currentGrade,
     desc,
     difficulty,
     weeklyHours,
+    onDelete
 }) => {
     return (
         <div className="card">
@@ -15,7 +17,9 @@ export const Card = ({
             <p className="card-desc"><span className="bolded">Class Difficulty</span>: {difficulty}</p>
             <p className="card-desc"><span className="bolded">Time Commitment</span>: {weeklyHours} hrs/week</p>
             <p className="card-desc"><span className="bolded">Additional Notes</span>: {desc} </p>
-            <a href="classPage">Class Page!</a>
+            <span class="button">
+                <button className="delete-button" onClick={() => onDelete(id)}>Delete</button>
+            </span>
         </div>
     )
 }

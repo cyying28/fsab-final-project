@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchClasses } from './services/firebaseServices';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from './firebase'; // Import Firestore
 import Card from './components/Card';
 
@@ -72,17 +72,26 @@ const ClassesList = () => {
         setShowModal(false);
     }
 
+    const handleDelete = async (id) => {
+        try {
+            await deleteDoc(doc(db, "classes", id));
+            setClasses(prevClasses => prevClasses.filter(classItem => classItem.id !== id));
+        } catch (error) {
+            setError("Failed to delete class.");
+        }
+    };
+
     if (error) {
         return <p>{error}</p>;
     }
 
     return (
         <div>
-            <button onClick={handleOpenModal}>Add a Class!</button>
+            <span class="center"> <button onClick={handleOpenModal}>Add a Class!</button> </span>
             {showModal && (
                 <div className="modal">
                     <div className="modal-body">
-                        <h2>Add a New Class</h2>
+                        <h2>New Class</h2>
                         <form onSubmit={handleSubmit}>
                             <label>
                                 Class Name:
@@ -146,19 +155,21 @@ const ClassesList = () => {
                 </div>
         
             )}
-            <div className="list">
+            <div className="grid">
                 {classes.map((classItem) => (
-                    <Card
-                        className= {classItem.className}
-                        currentGrade= {classItem.currentGrade}
-                        desc= {classItem.desc}
-                        difficulty= {classItem.difficulty}
-                        weeklyHours= {classItem.weeklyHours}
-                    />
+                    <div className="cell">
+                        <Card
+                            id={classItem.id}
+                            className= {classItem.className}
+                            currentGrade= {classItem.currentGrade}
+                            desc= {classItem.desc}
+                            difficulty= {classItem.difficulty}
+                            weeklyHours= {classItem.weeklyHours}
+                            onDelete={handleDelete}
+                        />
+                    </div>
                 ))}
             </div>
-                
-
         </div>
     );
 };
