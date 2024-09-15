@@ -5,6 +5,15 @@
   justify-content: center;
   height: 100vh;
   background-color: white;
+  overflow: auto;
+}
+
+.header {
+  display: block;
+  position: static;
+  top: 0;
+  margin: 10px;
+  padding: 20px;
 }
 
 img {
@@ -17,4 +26,39 @@ h1 {
   margin: 0;
   padding: 5;
   display: block;
+  align-items: center;
+}
+
+.modal {
+  display: in-line block;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(189, 189, 189, 0.4); 
+}
+
+.modal-content {
+  background-color: #746565;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 500px;
 }

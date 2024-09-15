@@ -12,8 +12,8 @@ const ClassesList = () => {
         className: '',
         currentGrade: '',
         desc: '',
-        difficulty: 0,
-        weeklyHours: 0,
+        difficulty: '',
+        weeklyHours: '',
     });
 
     useEffect(() => {
@@ -52,16 +52,25 @@ const ClassesList = () => {
                 currentGrade: '',
                 desc: '',
                 difficulty: '',
-                weeklyHours: 0,
+                weeklyHours: '',
             });
-            setShowModal(false); // Close the modal
+            setShowModal(false);
         } catch (error) {
         setError("Failed to add class.");
         }
     };
 
     const handleOpenModal = () => setShowModal(true);
-    const handleCloseModal = () => setShowModal(false);
+    const handleCloseModal = () => {
+        setNewClass({
+            className: '',
+            currentGrade: '',
+            desc: '',
+            difficulty: '',
+            weeklyHours: '',
+        });
+        setShowModal(false);
+    }
 
     if (error) {
         return <p>{error}</p>;
@@ -69,82 +78,87 @@ const ClassesList = () => {
 
     return (
         <div>
-            <h1>Classes</h1>
-            <button onClick={handleOpenModal}>Add a New Class</button>
+            <button onClick={handleOpenModal}>Add a Class!</button>
             {showModal && (
                 <div className="modal">
-                    <div className="modal-content">
-                        <span className="close" onClick={handleCloseModal}>&times;</span>
+                    <div className="modal-body">
                         <h2>Add a New Class</h2>
                         <form onSubmit={handleSubmit}>
-                        <label>
-                            Class Name:
-                            <input
-                            type="text"
-                            name="className"
-                            value={newClass.className}
-                            onChange={onChange}
-                            required
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Current Grade:
-                            <input
-                            type="text"
-                            name="currentGrade"
-                            value={newClass.currentGrade}
-                            onChange={onChange}
-                            required
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Additional Notes:
-                            <textarea
-                            name="additionalNotes"
-                            value={newClass.additionalNotes}
-                            onChange={onChange}
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Time Commitment (hrs/week):
-                            <input
-                            type="number"
-                            name="timeCommitment"
-                            value={newClass.timeCommitment}
-                            onChange={onChange}
-                            required
-                            />
-                        </label>
-                        <br />
-                        <label>
-                            Time Commitment (hrs/week):
-                            <input
-                            type="number"
-                            name="timeCommitment"
-                            value={newClass.timeCommitment}
-                            onChange={onChange}
-                            required
-                            />
-                        </label>
-                        <br />
-                        <button type="submit">Add Class</button>
+                            <label>
+                                Class Name:
+                                <input
+                                type="text"
+                                name="className"
+                                value={newClass.className}
+                                onChange={onChange}
+                                required
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Current Grade:
+                                <input
+                                type="text"
+                                name="currentGrade"
+                                value={newClass.currentGrade}
+                                onChange={onChange}
+                                required
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Description:
+                                <input
+                                type="text"
+                                name="desc"
+                                value={newClass.desc}
+                                onChange={onChange}
+                                required
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Difficulty (out of 10):
+                                <input
+                                type="number"
+                                name="difficulty"
+                                value={newClass.difficulty}
+                                onChange={onChange}
+                                required
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Time Commitment (hrs/week):
+                                <input
+                                type="number"
+                                name="weeklyHours"
+                                value={newClass.timeCommitment}
+                                onChange={onChange}
+                                required
+                                />
+                            </label>
+                            <br />
+                            <button type="button" onClick={handleCloseModal}>Cancel</button>
+                            <button type="submit">Add Class</button>
                         </form>
                     </div>
                 </div>
         
             )}
-            {classes.map((classItem) => (
-                <Card
-                    className= {classItem.className}
-                    currentGrade= {classItem.currentGrade}
-                    desc= {classItem.desc}
-                    difficulty= {classItem.difficulty}
-                    weeklyHours= {classItem.weeklyHours}
-                />
-            ))}
+            <div className="list">
+                {classes.map((classItem) => (
+                    <Card
+                        className= {classItem.className}
+                        currentGrade= {classItem.currentGrade}
+                        desc= {classItem.desc}
+                        difficulty= {classItem.difficulty}
+                        weeklyHours= {classItem.weeklyHours}
+                    />
+                ))}
+            </div>
+                
+
         </div>
     );
 };
