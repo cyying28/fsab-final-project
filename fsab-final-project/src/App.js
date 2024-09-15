@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import Card from './components/Card';
+import ClassesList from './ClassesList';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Class Planner</h1>
+      <img 
+        src="https://core-docs.s3.amazonaws.com/owensboro_public_schools_ar/article/image/large_04b2e8ef-0951-4e70-b956-4a4dd4f7a2c7.jpeg"
+        alt="School Supplies"
+        style={{ width: 'auto', height: 250 }}
+      />
+      <h1>Classes:</h1>
+      <ClassesList />
     </div>
   );
 }
