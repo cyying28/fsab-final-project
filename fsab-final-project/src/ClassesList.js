@@ -133,6 +133,8 @@ const ClassesList = () => {
                                 name="difficulty"
                                 value={newClass.difficulty}
                                 onChange={onChange}
+                                min="0"
+                                max="10"
                                 required
                                 />
                             </label>
@@ -144,6 +146,7 @@ const ClassesList = () => {
                                 name="weeklyHours"
                                 value={newClass.timeCommitment}
                                 onChange={onChange}
+                                min="0"
                                 required
                                 />
                             </label>

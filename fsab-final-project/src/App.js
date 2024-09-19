@@ -11,7 +11,7 @@ function App() {
         alt="School Supplies"
         style={{ width: 'auto', height: 250 }}
       />
-      <h1>Classes:</h1>
+      <h2>Classes:</h2>
       <ClassesList />
     </div>
   );

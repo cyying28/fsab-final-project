@@ -14,7 +14,7 @@ export const Card = ({
         <div className="card">
             <h1 className="card-title">{className}</h1>
             <p className="card-desc"><span className="bolded">Current Grade</span>: {currentGrade}</p>
-            <p className="card-desc"><span className="bolded">Class Difficulty</span>: {difficulty}</p>
+            <p className="card-desc"><span className="bolded">Class Difficulty</span>: {difficulty}/10</p>
             <p className="card-desc"><span className="bolded">Time Commitment</span>: {weeklyHours} hrs/week</p>
             <p className="card-desc"><span className="bolded">Additional Notes</span>: {desc} </p>
             <span class="button">
