@@ -56,7 +56,7 @@ const ClassesList = () => {
             });
             setShowModal(false);
         } catch (error) {
-        setError("Failed to add class.");
+            setError("Failed to add class.");
         }
     };
 

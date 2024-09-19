@@ -1,6 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
-import Card from './components/Card';
+import React from 'react';
 import ClassesList from './ClassesList';
 
 function App() {
